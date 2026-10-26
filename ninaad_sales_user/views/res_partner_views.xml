@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        The "Salesperson" (user_id) field on the Contact form is added on
+        top of base.view_partner_form by the sale/sales_team module (it is
+        not part of base itself). Because this module depends on
+        sale_management, that inheriting view loads first, so the xpath
+        below finds the field on the fully resolved arch.
+    -->
+    <record id="view_partner_form_inherit_ninaad" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.ninaad.sales.user</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="domain">[]</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
